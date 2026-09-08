@@ -4,7 +4,7 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
-RUN npm run build
+RUN NODE_OPTIONS="--max-old-space-size=4096" npm run build
 
 # ---------- Stage 2: Production ----------
 FROM node:18-alpine
@@ -16,5 +16,6 @@ COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/src ./src
 RUN chown -R nodeuser:nodejs /app
 USER nodeuser
-EXPOSE 3000
+ENV NODE_OPTIONS="--max-old-space-size=4096"
+EXPOSE 8800
 CMD ["npm", "start"]
