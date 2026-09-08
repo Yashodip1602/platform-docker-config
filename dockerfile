@@ -15,17 +15,13 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-ENV NODE_ENV=production
-
-# Non-root user
 RUN addgroup -g 1001 -S nodejs && adduser -S nodeuser -u 1001
 
-# Production dependencies फक्त
 COPY package*.json ./
-RUN npm ci --omit=dev && npm cache clean --force
+RUN npm ci && npm cache clean --force
 
-# Build stage मधून compiled output copy करा
 COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/src ./src
 
 RUN chown -R nodeuser:nodejs /app
 USER nodeuser
