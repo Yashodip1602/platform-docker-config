@@ -18,4 +18,4 @@ RUN chown -R nodeuser:nodejs /app
 USER nodeuser
 ENV NODE_OPTIONS="--max-old-space-size=4096"
 EXPOSE 8800
-CMD ["npm", "start"]
+CMD ["node", "dist/app.js"]
