@@ -1,0 +1,43 @@
+# Dependencies
+node_modules
+npm-debug.log
+
+# Build output (image मध्येच generate होईल)
+dist
+
+# Environment & secrets
+.env
+.env.*
+!.env.example
+
+# Git
+.git
+.gitignore
+
+# Docker
+Dockerfile
+.dockerignore
+docker-compose.yml
+
+# IDE / OS
+.vscode
+.idea
+.DS_Store
+*.swp
+
+# Logs
+*.log
+logs
+
+# Tests
+coverage
+*.test.ts
+__tests__
+
+# Docs
+*.md
+README.md
+
+# CI/CD
+.github
+Jenkinsfile
